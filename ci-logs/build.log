@@ -1,0 +1,189 @@
+Downloading https://services.gradle.org/distributions/gradle-8.1.1-bin.zip
+...........10%............20%............30%............40%............50%............60%............70%............80%...........90%............100%
+
+Welcome to Gradle 8.1.1!
+
+Here are the highlights of this release:
+ - Stable configuration cache
+ - Experimental Kotlin DSL assignment syntax
+ - Building with Java 20
+
+For more details see https://docs.gradle.org/8.1.1/release-notes.html
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. See https://docs.gradle.org/8.1.1/userguide/gradle_daemon.html#sec:disabling_the_daemon.
+Daemon will be stopped at the end of the build 
+
+> Configure project :
+Java: 17.0.20.1, JVM: 17.0.20.1+1
+
+> Task :compileJava
+Setting up MCP environment
+Initializing steps
+Executing steps
+ > Running 'downloadManifest'
+ > Running 'downloadJson'
+ > Running 'downloadClient'
+ > Running 'downloadServer'
+ > Running 'extractServer'
+ > Running 'downloadClientMappings'
+ > Running 'mergeMappings'
+ > Running 'stripClient'
+ > Running 'stripServer'
+ > Running 'merge'
+ > Running 'listLibraries'
+ > Running 'rename'
+Stopping at requested step: /home/runner/.gradle/caches/forge_gradle/mcp_repo/de/oceanlabs/mcp/mcp_config/1.20.1-20230612.114412/joined/rename/output.jar
+[18:29:25] [main/INFO]: Writing debug log file accesstransform.log
+[18:29:25] [main/INFO]: Access Transformer processor running version 8.2.14
+[18:29:25] [main/INFO]: Command line arguments [--inJar, /home/runner/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.20/forge-1.20.1-47.2.20-injected.jar, --outJar, /home/runner/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.20_mapped_official_1.20.1/forge-1.20.1-47.2.20_mapped_official_1.20.1.jar, --logFile, accesstransform.log, --atFile, /home/runner/work/Backrooms-Evolved/Backrooms-Evolved/build/_atJar_4/parent_at.cfg]
+[18:29:25] [main/INFO]: Reading from /home/runner/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.20/forge-1.20.1-47.2.20-injected.jar
+[18:29:25] [main/INFO]: Writing to /home/runner/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.20_mapped_official_1.20.1/forge-1.20.1-47.2.20_mapped_official_1.20.1.jar
+[18:29:25] [main/INFO]: Transformer file /home/runner/work/Backrooms-Evolved/Backrooms-Evolved/build/_atJar_4/parent_at.cfg
+[18:29:25] [main/WARN]: Found existing output jar /home/runner/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.20_mapped_official_1.20.1/forge-1.20.1-47.2.20_mapped_official_1.20.1.jar, overwriting
+[18:29:29] [main/INFO]: JAR transformation complete /home/runner/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.20_mapped_official_1.20.1/forge-1.20.1-47.2.20_mapped_official_1.20.1.jar
+Creating SRG -> MCP TSRG
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/registry/ModBlocks.java:13: error: cannot find symbol
+import net.minecraft.world.level.material.Material;
+                                         ^
+  symbol:   class Material
+  location: package net.minecraft.world.level.material
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/client/ClientEvents.java:14: error: cannot find symbol
+import net.minecraftforge.client.event.ClientTickEvent;
+                                      ^
+  symbol:   class ClientTickEvent
+  location: package net.minecraftforge.client.event
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/client/ClientEvents.java:15: error: cannot find symbol
+import net.minecraftforge.client.event.PlaySoundSourceEvent;
+                                      ^
+  symbol:   class PlaySoundSourceEvent
+  location: package net.minecraftforge.client.event
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/client/ClientEvents.java:33: error: package ClientTickEvent does not exist
+    public static void onClientTick(ClientTickEvent.Post event) {
+                                                   ^
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/client/ClientEvents.java:143: error: cannot find symbol
+    public static void onFog(ViewportEvent.ComputeFog event) {
+                                          ^
+  symbol:   class ComputeFog
+  location: class ViewportEvent
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/client/ClientEvents.java:175: error: cannot find symbol
+    public static void onPlaySound(PlaySoundSourceEvent event) {
+                                   ^
+  symbol:   class PlaySoundSourceEvent
+  location: class ClientEvents
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/client/AmbienceManager.java:12: error: cannot find symbol
+import net.minecraftforge.client.event.ClientTickEvent;
+                                      ^
+  symbol:   class ClientTickEvent
+  location: package net.minecraftforge.client.event
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/client/AmbienceManager.java:28: error: package ClientTickEvent does not exist
+    public static void onClientTick(ClientTickEvent.Post event) {
+                                                   ^
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/client/RecordingManager.java:8: error: cannot find symbol
+import com.mojang.blaze3d.pipeline.Framebuffer;
+                                  ^
+  symbol:   class Framebuffer
+  location: package com.mojang.blaze3d.pipeline
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/registry/ModRecipeSerializers.java:18: error: incompatible types: invalid constructor reference
+                    () -> new SimpleCraftingRecipeSerializer<>(CameraChargeRecipe::new));
+                                                               ^
+    constructor CameraChargeRecipe in class CameraChargeRecipe cannot be applied to given types
+      required: ResourceLocation
+      found:    ResourceLocation,CraftingBookCategory
+      reason: actual and formal argument lists differ in length
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/item/CameraChargeRecipe.java:19: error: constructor CustomRecipe in class CustomRecipe cannot be applied to given types;
+        super(id);
+        ^
+  required: ResourceLocation,CraftingBookCategory
+  found:    ResourceLocation
+  reason: actual and formal argument lists differ in length
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/registry/ModBlocks.java:24: error: cannot find symbol
+        return BlockBehaviour.Properties.of(Material.CLOTH_DECORATION)
+                                            ^
+  symbol:   variable Material
+  location: class ModBlocks
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/registry/ModBlocks.java:30: error: cannot find symbol
+        return BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS)
+                                            ^
+  symbol:   variable Material
+  location: class ModBlocks
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/registry/ModBlocks.java:46: error: cannot find symbol
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                                                         ^
+  symbol:   variable Material
+  location: class ModBlocks
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/registry/ModBlocks.java:50: error: cannot find symbol
+            () -> new Block(BlockBehaviour.Properties.of(Material.WOOD)
+                                                         ^
+  symbol:   variable Material
+  location: class ModBlocks
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/registry/ModBlocks.java:63: error: cannot find symbol
+            () -> new SanityAnchorBlock(BlockBehaviour.Properties.of(Material.METAL)
+                                                                     ^
+  symbol:   variable Material
+  location: class ModBlocks
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/client/RoomSampler.java:33: error: cannot find symbol
+            if (!state.isAir() && state.getMaterial().isSolid()) continue;
+                                       ^
+  symbol:   method getMaterial()
+  location: variable state of type BlockState
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/client/ClientEvents.java:66: error: cannot find symbol
+        int w = g.width();
+                 ^
+  symbol:   method width()
+  location: variable g of type GuiGraphics
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/client/ClientEvents.java:67: error: cannot find symbol
+        int h = g.height();
+                 ^
+  symbol:   method height()
+  location: variable g of type GuiGraphics
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/client/EchoSoundInstance.java:12: error: incompatible types: ResourceLocation cannot be converted to SoundEvent
+        super(sound, source, volume, pitch, false, 0, Attenuation.LINEAR, x, y, z, false);
+              ^
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/client/SanityManager.java:122: error: incompatible types: ResourceLocation cannot be converted to SoundEvent
+                sound, SoundSource.AMBIENT, volume, pitch, false, 0,
+                ^
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/client/AmbienceManager.java:89: error: incompatible types: ResourceLocation cannot be converted to SoundEvent
+                sound, source, volume, 1f, true, 0,
+                ^
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/client/RecordingManager.java:63: error: cannot find symbol
+        Framebuffer fb = mc.getMainRenderTarget();
+        ^
+  symbol:   class Framebuffer
+  location: class RecordingManager
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/client/RecordingManager.java:97: error: cannot find symbol
+                        img.write(new File(dir, String.format("frame_%03d.png", i)));
+                           ^
+  symbol:   method write(File)
+  location: variable img of type NativeImage
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/BackroomsEvolved.java:41: error: cannot find symbol
+        CreativeModeTabRegistry.register(TAB);
+                               ^
+  symbol:   method register(CreativeModeTab)
+  location: class CreativeModeTabRegistry
+/home/runner/work/Backrooms-Evolved/Backrooms-Evolved/src/main/java/com/ivanitskiye/backroomsevolved/block/SanityAnchorBlock.java:28: error: cannot find symbol
+            level.addParticle(ParticleTypes.WARM_COMPOSTER,
+                                           ^
+  symbol:   variable WARM_COMPOSTER
+  location: class ParticleTypes
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+26 errors
+
+> Task :compileJava FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler error output for details.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 2m 1s
+1 actionable task: 1 executed
