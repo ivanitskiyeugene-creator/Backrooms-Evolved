@@ -1,0 +1,47 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - 'arena/**'
+      - 'main'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Generate gradle wrapper (in temp dir, without evaluating project)
+        run: |
+          mkdir -p /tmp/wrapgen
+          cd /tmp/wrapgen
+          gradle wrapper --gradle-version 8.1.1
+          cp -r gradle gradlew gradlew.bat "$GITHUB_WORKSPACE/"
+          chmod +x "$GITHUB_WORKSPACE/gradlew"
+
+      - name: Build with Gradle
+        run: ./gradlew build --no-daemon --stacktrace
+
+      - name: Upload mod jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: backroomsevolved-jar
+          path: build/libs/*.jar
+
+      - name: Upload wrapper (so repo becomes self-buildable)
+        uses: actions/upload-artifact@v4
+        with:
+          name: gradle-wrapper
+          path: |
+            gradle/wrapper/
+            gradlew
+            gradlew.bat
