@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "backroomsevolved:block/old_carpet_0"
+  }
+}

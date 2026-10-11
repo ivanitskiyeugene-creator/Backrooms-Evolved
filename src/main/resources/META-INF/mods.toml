@@ -1,0 +1,28 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "MIT"
+issueTrackerURL = "https://github.com/ivanitskiyeugene-creator/Backrooms-Evolved/issues"
+
+[[mods]]
+modId = "backroomsevolved"
+version = "1.0.0"
+displayName = "Backrooms Evolved"
+description = '''
+The Backrooms: damp carpet, humming fluorescent lamps, echoes that answer your steps,
+a camera with IR mode and playback, and a sanity meter that slowly eats you alive.
+Build Level 0 yourself — the Backrooms does not generate on its own.
+'''
+
+[[dependencies.backroomsevolved]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.backroomsevolved]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.1,1.21)"
+ordering = "NONE"
+side = "BOTH"

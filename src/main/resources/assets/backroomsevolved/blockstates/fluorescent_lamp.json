@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "burned=false,lit=true": {
+      "model": "backroomsevolved:block/fluorescent_lamp_lit"
+    },
+    "burned=false,lit=false": {
+      "model": "backroomsevolved:block/fluorescent_lamp_off"
+    },
+    "burned=true,lit=false": {
+      "model": "backroomsevolved:block/fluorescent_lamp_burned"
+    },
+    "burned=true,lit=true": {
+      "model": "backroomsevolved:block/fluorescent_lamp_burned"
+    }
+  }
+}

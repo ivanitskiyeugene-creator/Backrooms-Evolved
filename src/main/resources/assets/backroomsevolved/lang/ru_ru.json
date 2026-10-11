@@ -1,0 +1,46 @@
+{
+  "itemGroup.backroomsevolved": "Backrooms Evolved",
+
+  "block.backroomsevolved.damp_carpet": "Влажный ковёр",
+  "block.backroomsevolved.stained_carpet": "Ковёр с пятнами",
+  "block.backroomsevolved.old_carpet": "Старый ковёр",
+  "block.backroomsevolved.wall_panel": "Стеновая панель",
+  "block.backroomsevolved.old_wallpaper": "Старые обои",
+  "block.backroomsevolved.fluorescent_lamp": "Гудящая флуоресцентная лампа",
+  "block.backroomsevolved.white_lamp": "Гудящая белая лампа",
+  "block.backroomsevolved.red_lamp": "Аварийная красная лампа",
+  "block.backroomsevolved.sanity_anchor": "Якорь рассудка",
+
+  "item.backroomsevolved.camera": "Камера Бекрумса",
+  "item.backroomsevolved.battery": "Батарея",
+
+  "tooltip.backroomsevolved.battery": "Батарея: %s%%",
+  "tooltip.backroomsevolved.mode": "Режим: %s",
+  "tooltip.backroomsevolved.mode.normal": "Обычный",
+  "tooltip.backroomsevolved.mode.ir": "Инфракрасный",
+  "tooltip.backroomsevolved.recording": "Кадров в записи: %s",
+  "tooltip.backroomsevolved.rec_hint": "Красться + ПКМ — посмотреть запись",
+  "tooltip.backroomsevolved.key_hint": "[%s] — начать/остановить запись",
+
+  "gui.backroomsevolved.playback": "Просмотр записи",
+  "gui.backroomsevolved.frame": "Кадр %s / %s",
+  "gui.backroomsevolved.play": "▶",
+  "gui.backroomsevolved.pause": "❚❚",
+  "gui.backroomsevolved.prev": "◀",
+  "gui.backroomsevolved.next": "▶▶",
+
+  "hud.backroomsevolved.sanity": "Рассудок",
+  "hud.backroomsevolved.rec": "REC",
+
+  "key.backroomsevolved.record": "Камера: начать/остановить запись",
+  "key.categories.backroomsevolved": "Backrooms Evolved",
+
+  "subtitles.backroomsevolved.lamp_hum": "Флуоресцентная лампа гудит",
+  "subtitles.backroomsevolved.camera_click": "Щелчок камеры",
+  "subtitles.backroomsevolved.camera_power_down": "Камера разряжается",
+  "subtitles.backroomsevolved.camera_static": "Помехи камеры",
+  "subtitles.backroomsevolved.whisper": "Шёпот",
+  "subtitles.backroomsevolved.heartbeat": "Сердцебиение",
+  "subtitles.backroomsevolved.basement_ambience": "Гул подвала",
+  "subtitles.backroomsevolved.camera_rec_beep": "Сигнал записи камеры"
+}

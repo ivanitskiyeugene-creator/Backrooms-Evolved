@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "footprints=0": {
+      "model": "backroomsevolved:block/old_carpet_0"
+    },
+    "footprints=1": {
+      "model": "backroomsevolved:block/old_carpet_1"
+    },
+    "footprints=2": {
+      "model": "backroomsevolved:block/old_carpet_2"
+    },
+    "footprints=3": {
+      "model": "backroomsevolved:block/old_carpet_3"
+    }
+  }
+}

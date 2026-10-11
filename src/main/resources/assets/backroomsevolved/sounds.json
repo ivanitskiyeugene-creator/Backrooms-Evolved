@@ -1,0 +1,34 @@
+{
+  "lamp_hum": {
+    "sounds": [ { "name": "backroomsevolved:lamp_hum" } ],
+    "subtitle": "subtitles.backroomsevolved.lamp_hum"
+  },
+  "camera_click": {
+    "sounds": [ { "name": "backroomsevolved:camera_click" } ],
+    "subtitle": "subtitles.backroomsevolved.camera_click"
+  },
+  "camera_power_down": {
+    "sounds": [ { "name": "backroomsevolved:camera_power_down" } ],
+    "subtitle": "subtitles.backroomsevolved.camera_power_down"
+  },
+  "camera_static": {
+    "sounds": [ { "name": "backroomsevolved:camera_static" } ],
+    "subtitle": "subtitles.backroomsevolved.camera_static"
+  },
+  "whisper": {
+    "sounds": [ { "name": "backroomsevolved:whisper" } ],
+    "subtitle": "subtitles.backroomsevolved.whisper"
+  },
+  "heartbeat": {
+    "sounds": [ { "name": "backroomsevolved:heartbeat" } ],
+    "subtitle": "subtitles.backroomsevolved.heartbeat"
+  },
+  "basement_ambience": {
+    "sounds": [ { "name": "backroomsevolved:basement_ambience" } ],
+    "subtitle": "subtitles.backroomsevolved.basement_ambience"
+  },
+  "camera_rec_beep": {
+    "sounds": [ { "name": "backroomsevolved:camera_rec_beep" } ],
+    "subtitle": "subtitles.backroomsevolved.camera_rec_beep"
+  }
+}

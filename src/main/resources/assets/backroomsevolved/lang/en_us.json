@@ -1,0 +1,46 @@
+{
+  "itemGroup.backroomsevolved": "Backrooms Evolved",
+
+  "block.backroomsevolved.damp_carpet": "Damp Carpet",
+  "block.backroomsevolved.stained_carpet": "Stained Carpet",
+  "block.backroomsevolved.old_carpet": "Old Carpet",
+  "block.backroomsevolved.wall_panel": "Wall Panel",
+  "block.backroomsevolved.old_wallpaper": "Old Wallpaper",
+  "block.backroomsevolved.fluorescent_lamp": "Humming Fluorescent Lamp",
+  "block.backroomsevolved.white_lamp": "Humming White Lamp",
+  "block.backroomsevolved.red_lamp": "Emergency Red Lamp",
+  "block.backroomsevolved.sanity_anchor": "Sanity Anchor",
+
+  "item.backroomsevolved.camera": "Backrooms Camera",
+  "item.backroomsevolved.battery": "Battery",
+
+  "tooltip.backroomsevolved.battery": "Battery: %s%%",
+  "tooltip.backroomsevolved.mode": "Mode: %s",
+  "tooltip.backroomsevolved.mode.normal": "Normal",
+  "tooltip.backroomsevolved.mode.ir": "Infrared",
+  "tooltip.backroomsevolved.recording": "Recording frames: %s",
+  "tooltip.backroomsevolved.rec_hint": "Sneak + Use — view recording",
+  "tooltip.backroomsevolved.key_hint": "Press [%s] to start/stop recording",
+
+  "gui.backroomsevolved.playback": "Camera playback",
+  "gui.backroomsevolved.frame": "Frame %s / %s",
+  "gui.backroomsevolved.play": "▶",
+  "gui.backroomsevolved.pause": "❚❚",
+  "gui.backroomsevolved.prev": "◀",
+  "gui.backroomsevolved.next": "▶▶",
+
+  "hud.backroomsevolved.sanity": "Sanity",
+  "hud.backroomsevolved.rec": "REC",
+
+  "key.backroomsevolved.record": "Camera: start/stop recording",
+  "key.categories.backroomsevolved": "Backrooms Evolved",
+
+  "subtitles.backroomsevolved.lamp_hum": "Fluorescent lamp hums",
+  "subtitles.backroomsevolved.camera_click": "Camera clicks",
+  "subtitles.backroomsevolved.camera_power_down": "Camera powers down",
+  "subtitles.backroomsevolved.camera_static": "Camera static",
+  "subtitles.backroomsevolved.whisper": "Whispering",
+  "subtitles.backroomsevolved.heartbeat": "Heartbeat",
+  "subtitles.backroomsevolved.basement_ambience": "Basement rumbles",
+  "subtitles.backroomsevolved.camera_rec_beep": "Camera beeps"
+}
