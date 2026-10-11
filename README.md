@@ -44,19 +44,18 @@ EN + RU.
 ## Сборка
 
 Нужны: **JDK 17**, доступ в интернет (Maven Central / Forge maven).
+Gradle wrapper уже в репозитории, поэтому просто:
 
 ```bash
-# один раз сгенерировать gradle wrapper (если нет gradle/wrapper/gradle-wrapper.jar):
-gradle wrapper --gradle-version 8.1.1
-# сборка:
 ./gradlew build
 ```
 
 Готовый jar лежит в `build/libs/backroomsevolved-1.0.0.jar` — кидай в `mods/`.
 Запуск из IDE: `./gradlew runClient`.
 
-> В песочнице Arena зависимости Gradle недоступны, поэтому там мод не собирается —
-> исходники, ассеты и скрипты генерации лежат здесь и собираются локально.
+### Готовая сборка (без локального Gradle)
+GitHub Actions собирают мод при каждом пуше и выкладывают jar в
+**Releases → v1.0.0** (ассет `backroomsevolved-1.0.0.jar`). Скачал — кинул в `mods/` — играешь.
 
 ## Регенерация ассетов
 Текстуры и звуки сгенерированы процедурно и воспроизводимо:

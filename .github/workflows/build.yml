@@ -39,6 +39,18 @@ jobs:
           name: backroomsevolved-jar
           path: build/libs/*.jar
 
+      - name: Publish jar to GitHub Release v1.0.0
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view v1.0.0 --repo "${{ github.repository }}" >/dev/null 2>&1 || \
+            gh release create v1.0.0 --repo "${{ github.repository }}" \
+              --title "Backrooms Evolved 1.0.0" \
+              --target "${{ github.ref_name }}" \
+              --notes "Сборка мода для Minecraft 1.20.1 (Forge 47). Кидай jar из assets в папку mods/. Полный список фич — в README."
+          gh release upload v1.0.0 build/libs/backroomsevolved-1.0.0.jar --repo "${{ github.repository }}" --clobber
+
       - name: Publish build log on failure
         if: failure()
         run: |
