@@ -55,7 +55,12 @@ jobs:
                      net.minecraft.client.resources.sounds.SimpleSoundInstance \
                      net.minecraftforge.client.event.ViewportEvent \
                      net.minecraftforge.common.CreativeModeTabRegistry \
-                     net.minecraft.client.Screenshot; do
+                     net.minecraft.client.Screenshot \
+                     net.minecraftforge.event.TickEvent \
+                     'net.minecraftforge.event.TickEvent$ClientTickEvent' \
+                     'net.minecraftforge.client.event.ViewportEvent$ComputeFogColor' \
+                     'net.minecraftforge.client.event.ViewportEvent$RenderFog' \
+                     net.minecraft.client.renderer.GameRenderer; do
               echo "=== $C"
               javap -classpath "$JAR" "$C" 2>&1 | head -40
             done

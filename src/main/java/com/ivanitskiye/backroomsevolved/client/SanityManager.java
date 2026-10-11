@@ -119,9 +119,9 @@ public class SanityManager {
         double dy = RANDOM.nextGaussian() * 1.5;
         double dz = RANDOM.nextGaussian() * 4;
         Minecraft.getInstance().getSoundManager().play(new SimpleSoundInstance(
-                sound, SoundSource.AMBIENT, volume, pitch, false, 0,
-                SoundInstance.Attenuation.LINEAR,
-                player.getX() + dx, player.getY() + dy, player.getZ() + dz, false));
+                sound, SoundSource.AMBIENT, volume, pitch,
+                net.minecraft.util.RandomSource.create(),
+                player.getX() + dx, player.getY() + dy, player.getZ() + dz));
     }
 
     public static void reset() {

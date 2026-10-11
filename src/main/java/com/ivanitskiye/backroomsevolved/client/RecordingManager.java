@@ -6,7 +6,6 @@ import com.ivanitskiye.backroomsevolved.network.RecordingDonePacket;
 import com.ivanitskiye.backroomsevolved.registry.ModSounds;
 import com.mojang.blaze3d.platform.NativeImage;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.Framebuffer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
 
@@ -60,11 +59,8 @@ public class RecordingManager {
             stop(mc, mc.player != null ? mc.player.getMainHandItem() : ItemStack.EMPTY);
             return;
         }
-        Framebuffer fb = mc.getMainRenderTarget();
         try {
-            NativeImage full = new NativeImage(fb.viewWidth, fb.viewHeight, false);
-            fb.bindRead();
-            full.downloadTexture(0, false);
+            NativeImage full = net.minecraft.client.Screenshot.takeScreenshot(mc.getMainRenderTarget());
             NativeImage scaled = downscale(full, FRAME_W, FRAME_H);
             full.close();
             frames.add(scaled);
@@ -94,7 +90,7 @@ public class RecordingManager {
                 for (int i = 0; i < frames.size(); i++) {
                     NativeImage img = frames.get(i);
                     try {
-                        img.save(new File(dir, String.format("frame_%03d.png", i)));
+                        img.writeToFile(new File(dir, String.format("frame_%03d.png", i)));
                     } catch (IOException ignored) {
                     }
                     img.close();

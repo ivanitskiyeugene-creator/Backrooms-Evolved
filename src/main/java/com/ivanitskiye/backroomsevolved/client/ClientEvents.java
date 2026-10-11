@@ -10,7 +10,6 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.ItemStack;
@@ -33,7 +32,8 @@ public class ClientEvents {
     private static final Random RANDOM = new Random();
 
     @SubscribeEvent
-    public static void onClientTick(TickEvent.ClientTickEvent.Post event) {
+    public static void onClientTick(TickEvent.ClientTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.level == null) return;
 
@@ -141,18 +141,7 @@ public class ClientEvents {
 
     // ---------------------------------------------------------------- туман
     @SubscribeEvent
-    public static void onFog(ViewportEvent.RenderFog event) {
-        float humidity = SanityManager.humidity;
-        float sanity = SanityManager.sanity;
-        if (humidity < 0.02f && sanity < 70f) return;
-        float far = event.getFarPlane();
-        float k = Math.max(humidity * 0.65f, sanity > 70 ? (sanity - 70f) / 30f * 0.35f : 0f);
-        event.setFarPlane(far * (1f - k));
-        event.setNearPlane(Math.min(event.getNearPlane() + 2f * humidity, far * (1f - k) * 0.5f));
-    }
-
-    @SubscribeEvent
-    public static void onFogColor(ViewportEvent.RenderFogColor event) {
+    public static void onFogColor(ViewportEvent.ComputeFogColor event) {
         float humidity = SanityManager.humidity;
         if (humidity < 0.02f) return;
         float k = humidity * 0.3f;
@@ -186,9 +175,8 @@ public class ClientEvents {
 
         int delay = Math.max(4, Math.min(36, 3 + RoomSampler.openness / 24));
         var pos = mc.player.position();
-        SoundEvent wrapped = SoundEvent.createVariableRangeEvent(loc);
         EchoSoundInstance echo = new EchoSoundInstance(
-                wrapped, sound.getSource() != null ? sound.getSource() : SoundSource.NEUTRAL,
+                loc, sound.getSource() != null ? sound.getSource() : SoundSource.NEUTRAL,
                 sound.getVolume() * 0.3f, sound.getPitch() * 0.85f,
                 pos.x, pos.y, pos.z);
         mc.getSoundManager().playDelayed(echo, delay);

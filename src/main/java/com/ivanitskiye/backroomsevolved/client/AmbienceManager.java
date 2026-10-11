@@ -27,7 +27,8 @@ public class AmbienceManager {
     private static int lastLitLamps = 0;
 
     @SubscribeEvent
-    public static void onClientTick(TickEvent.ClientTickEvent.Post event) {
+    public static void onClientTick(TickEvent.ClientTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.level == null) {
             stopAll(mc);
@@ -87,7 +88,8 @@ public class AmbienceManager {
 
     private static void playLoop(Minecraft mc, SoundEvent sound, SoundSource source, float volume) {
         mc.getSoundManager().play(new SimpleSoundInstance(
-                sound, source, volume, 1f, true, 0,
+                sound.getLocation(), source, volume, 1f,
+                net.minecraft.util.RandomSource.create(), true, 0,
                 SoundInstance.Attenuation.NONE, 0, 0, 0, true));
     }
 
