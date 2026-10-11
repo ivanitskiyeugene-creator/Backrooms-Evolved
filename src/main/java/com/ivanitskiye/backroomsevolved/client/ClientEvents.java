@@ -4,17 +4,20 @@ import com.ivanitskiye.backroomsevolved.BackroomsEvolved;
 import com.ivanitskiye.backroomsevolved.item.CameraItem;
 import com.ivanitskiye.backroomsevolved.network.CameraActionPacket;
 import com.ivanitskiye.backroomsevolved.network.ModNetwork;
+import com.ivanitskiye.backroomsevolved.registry.ModSounds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.sounds.SoundInstance;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.event.ClientTickEvent;
-import net.minecraftforge.client.event.PlaySoundSourceEvent;
 import net.minecraftforge.client.event.RenderGuiEvent;
 import net.minecraftforge.client.event.ViewportEvent;
+import net.minecraftforge.client.event.sound.PlaySoundSourceEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.Random;
@@ -30,7 +33,7 @@ public class ClientEvents {
     private static final Random RANDOM = new Random();
 
     @SubscribeEvent
-    public static void onClientTick(ClientTickEvent.Post event) {
+    public static void onClientTick(TickEvent.ClientTickEvent.Post event) {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.level == null) return;
 
@@ -52,7 +55,7 @@ public class ClientEvents {
                 && !mc.level.getEntitiesOfClass(Monster.class, mc.player.getBoundingBox().inflate(10)).isEmpty()) {
             SanityManager.glitchTimer = Math.max(SanityManager.glitchTimer, 3);
             if (RANDOM.nextInt(50) == 0) {
-                mc.player.playSound(com.ivanitskiye.backroomsevolved.registry.ModSounds.CAMERA_STATIC.get(), 0.3f, 1f);
+                mc.player.playSound(ModSounds.CAMERA_STATIC.get(), 0.3f, 1f);
             }
         }
     }
@@ -63,8 +66,8 @@ public class ClientEvents {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null) return;
         GuiGraphics g = event.getGuiGraphics();
-        int w = g.width();
-        int h = g.height();
+        int w = g.guiWidth();
+        int h = g.guiHeight();
 
         ItemStack camera = mc.player.getMainHandItem();
         boolean hasCamera = camera.getItem() instanceof CameraItem;
@@ -81,7 +84,7 @@ public class ClientEvents {
             for (int i = 0; i < 4; i++) {
                 int alpha = (int) (humidity * 26 * (4 - i));
                 int t = 6 + i * 7;
-                g.fill(0, 0, w, t, 0x00000000 | (alpha << 24) | 0x0A0A12);
+                g.fill(0, 0, w, t, (alpha << 24) | 0x0A0A12);
                 g.fill(0, h - t, w, h, (alpha << 24) | 0x0A0A12);
                 g.fill(0, 0, t, h, (alpha << 24) | 0x0A0A12);
                 g.fill(w - t, 0, w, h, (alpha << 24) | 0x0A0A12);
@@ -93,8 +96,7 @@ public class ClientEvents {
             if ((mc.level.getGameTime() / 10) % 2 == 0) {
                 g.fill(8, 8, 14, 14, 0xFFFF3333);
             }
-            g.drawString(mc.font, net.minecraft.network.chat.Component.translatable("hud.backroomsevolved.rec"),
-                    18, 8, 0xFFFFFF);
+            g.drawString(mc.font, Component.translatable("hud.backroomsevolved.rec"), 18, 8, 0xFFFFFF);
         }
 
         // шкала рассудка
@@ -107,9 +109,8 @@ public class ClientEvents {
             int filled = (int) (bw * sanity / 100f);
             int color = sanity > 70 ? 0xFFCC2222 : sanity > 40 ? 0xFFCCAA22 : 0xFF77AA33;
             g.fill(x, y, x + filled, y + 5, color);
-            g.drawString(mc.font, net.minecraft.network.chat.Component.translatable("hud.backroomsevolved.sanity"),
-                    x - mc.font.width(net.minecraft.network.chat.Component.translatable("hud.backroomsevolved.sanity")) - 4,
-                    y - 1, 0xAAAAAA);
+            Component label = Component.translatable("hud.backroomsevolved.sanity");
+            g.drawString(mc.font, label, x - mc.font.width(label) - 4, y - 1, 0xAAAAAA);
         }
 
         // глитч-полосы
@@ -118,7 +119,7 @@ public class ClientEvents {
             for (int i = 0; i < bands; i++) {
                 int y = RANDOM.nextInt(h);
                 int bh = 1 + RANDOM.nextInt(3);
-                int col = RANDOM.nextBoolean() ? (0x60FFFFFF) : (0x60000000);
+                int col = RANDOM.nextBoolean() ? 0x60FFFFFF : 0x60000000;
                 g.fill(0, y, w, y + bh, col);
             }
             if (RANDOM.nextInt(3) == 0) {
@@ -140,7 +141,7 @@ public class ClientEvents {
 
     // ---------------------------------------------------------------- туман
     @SubscribeEvent
-    public static void onFog(ViewportEvent.ComputeFog event) {
+    public static void onFog(ViewportEvent.RenderFog event) {
         float humidity = SanityManager.humidity;
         float sanity = SanityManager.sanity;
         if (humidity < 0.02f && sanity < 70f) return;
@@ -151,7 +152,7 @@ public class ClientEvents {
     }
 
     @SubscribeEvent
-    public static void onFogColor(ViewportEvent.ComputeFogColor event) {
+    public static void onFogColor(ViewportEvent.RenderFogColor event) {
         float humidity = SanityManager.humidity;
         if (humidity < 0.02f) return;
         float k = humidity * 0.3f;
@@ -185,8 +186,9 @@ public class ClientEvents {
 
         int delay = Math.max(4, Math.min(36, 3 + RoomSampler.openness / 24));
         var pos = mc.player.position();
+        SoundEvent wrapped = SoundEvent.createVariableRangeEvent(loc);
         EchoSoundInstance echo = new EchoSoundInstance(
-                loc, sound.getSource() != null ? sound.getSource() : SoundSource.NEUTRAL,
+                wrapped, sound.getSource() != null ? sound.getSource() : SoundSource.NEUTRAL,
                 sound.getVolume() * 0.3f, sound.getPitch() * 0.85f,
                 pos.x, pos.y, pos.z);
         mc.getSoundManager().playDelayed(echo, delay);

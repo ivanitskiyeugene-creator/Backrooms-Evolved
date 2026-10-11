@@ -7,15 +7,17 @@ import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.event.ClientTickEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.Random;
 
 /**
  * Фоновые лупы: гул ламп рядом с горящими лампами и подвальный гул при сырости/безумии.
+ * Плюс пыль в свете ламп и "фигура", когда свет мигнул и погас.
  */
 public class AmbienceManager {
     private static final Random RANDOM = new Random();
@@ -25,7 +27,7 @@ public class AmbienceManager {
     private static int lastLitLamps = 0;
 
     @SubscribeEvent
-    public static void onClientTick(ClientTickEvent.Post event) {
+    public static void onClientTick(TickEvent.ClientTickEvent.Post event) {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.level == null) {
             stopAll(mc);
@@ -67,36 +69,35 @@ public class AmbienceManager {
         boolean wantBasement = SanityManager.humidity > 0.4f || SanityManager.sanity > 85f;
 
         if (wantHum && !humActive) {
-            playLoop(mc, ModSounds.LAMP_HUM.get().getLocation(), SoundSource.BLOCKS, 0.45f);
+            playLoop(mc, ModSounds.LAMP_HUM.get(), SoundSource.BLOCKS, 0.45f);
             humActive = true;
         } else if (!wantHum && humActive) {
-            stopLoop(mc, ModSounds.LAMP_HUM.get().getLocation(), SoundSource.BLOCKS);
+            stopLoop(mc, ModSounds.LAMP_HUM.get(), SoundSource.BLOCKS);
             humActive = false;
         }
 
         if (wantBasement && !basementActive) {
-            playLoop(mc, ModSounds.BASEMENT_AMBIENCE.get().getLocation(), SoundSource.AMBIENT, 0.5f);
+            playLoop(mc, ModSounds.BASEMENT_AMBIENCE.get(), SoundSource.AMBIENT, 0.5f);
             basementActive = true;
         } else if (!wantBasement && basementActive) {
-            stopLoop(mc, ModSounds.BASEMENT_AMBIENCE.get().getLocation(), SoundSource.AMBIENT);
+            stopLoop(mc, ModSounds.BASEMENT_AMBIENCE.get(), SoundSource.AMBIENT);
             basementActive = false;
         }
     }
 
-    private static void playLoop(Minecraft mc, net.minecraft.resources.ResourceLocation sound,
-                                 SoundSource source, float volume) {
+    private static void playLoop(Minecraft mc, SoundEvent sound, SoundSource source, float volume) {
         mc.getSoundManager().play(new SimpleSoundInstance(
                 sound, source, volume, 1f, true, 0,
                 SoundInstance.Attenuation.NONE, 0, 0, 0, true));
     }
 
-    private static void stopLoop(Minecraft mc, net.minecraft.resources.ResourceLocation sound, SoundSource source) {
-        mc.getSoundManager().stop(sound, source);
+    private static void stopLoop(Minecraft mc, SoundEvent sound, SoundSource source) {
+        mc.getSoundManager().stop(sound.getLocation(), source);
     }
 
     private static void stopAll(Minecraft mc) {
-        if (humActive) stopLoop(mc, ModSounds.LAMP_HUM.get().getLocation(), SoundSource.BLOCKS);
-        if (basementActive) stopLoop(mc, ModSounds.BASEMENT_AMBIENCE.get().getLocation(), SoundSource.AMBIENT);
+        if (humActive) stopLoop(mc, ModSounds.LAMP_HUM.get(), SoundSource.BLOCKS);
+        if (basementActive) stopLoop(mc, ModSounds.BASEMENT_AMBIENCE.get(), SoundSource.AMBIENT);
         humActive = false;
         basementActive = false;
     }

@@ -44,6 +44,30 @@ jobs:
         run: |
           mkdir -p ci-logs
           tail -c 200000 build.log > ci-logs/build.log
+          JAR=$(find /home/runner/.gradle/caches/forge_gradle -name "*mapped_official*.jar" | head -1)
+          {
+            echo "JAR=$JAR"
+            for C in net.minecraft.world.level.material.Material \
+                     net.minecraft.client.gui.GuiGraphics \
+                     com.mojang.blaze3d.platform.NativeImage \
+                     net.minecraft.client.renderer.Framebuffer \
+                     com.mojang.blaze3d.pipeline.Framebuffer \
+                     net.minecraft.client.resources.sounds.SimpleSoundInstance \
+                     net.minecraftforge.client.event.ViewportEvent \
+                     net.minecraftforge.common.CreativeModeTabRegistry \
+                     net.minecraft.client.Screenshot; do
+              echo "=== $C"
+              javap -classpath "$JAR" "$C" 2>&1 | head -40
+            done
+            echo "=== ViewportEvent inner classes"
+            unzip -l "$JAR" | grep -i "ViewportEvent" | head
+            echo "=== BlockStateBase methods of interest"
+            javap -classpath "$JAR" 'net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase' 2>&1 | grep -iE "solid|occlude|replace|material|motion" | head -20
+            echo "=== ParticleTypes fields of interest"
+            javap -classpath "$JAR" net.minecraft.core.particles.ParticleTypes 2>&1 | grep -iE "COMPOSTER|FLAME|ASH|WARM" | head
+            echo "=== ClientTickEvent classes"
+            unzip -l "$JAR" | grep -iE "ClientTickEvent" | head
+          } > ci-logs/api.txt 2>&1 || true
           git config user.name "ci-bot"
           git config user.email "ci-bot@users.noreply.github.com"
           git add ci-logs

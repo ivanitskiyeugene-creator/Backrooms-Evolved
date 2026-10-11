@@ -65,11 +65,11 @@ public class SanityManager {
 
         // --- галлюцинации
         if (sanity > 50 && chance(0.002f)) {
-            playAt(player, ModSounds.WHISPER.get().getLocation(), 0.7f, 0.9f + RANDOM.nextFloat() * 0.2f);
+            playAt(player, ModSounds.WHISPER.get(), 0.7f, 0.9f + RANDOM.nextFloat() * 0.2f);
         }
         if (sanity > 70) {
             if (chance(0.0015f)) {
-                playAt(player, ModSounds.HEARTBEAT.get().getLocation(), 0.9f, 1f);
+                playAt(player, ModSounds.HEARTBEAT.get(), 0.9f, 1f);
             }
             if (chance(0.0012f)) {
                 spawnFigure(player);
@@ -77,7 +77,7 @@ public class SanityManager {
         }
         if (sanity > 85 && chance(0.002f)) {
             glitchTimer = Math.max(glitchTimer, 8);
-            playAt(player, ModSounds.CAMERA_STATIC.get().getLocation(), 0.25f, 1f);
+            playAt(player, ModSounds.CAMERA_STATIC.get(), 0.25f, 1f);
         }
         // В ИК-режиме иногда видно то, чего не видно глазом
         if (!camera.isEmpty() && CameraItem.isIR(camera) && CameraItem.getBattery(camera) > 0
@@ -113,7 +113,7 @@ public class SanityManager {
         density = (float) backrooms / Math.max(1, total);
     }
 
-    private static void playAt(LocalPlayer player, net.minecraft.resources.ResourceLocation sound,
+    private static void playAt(LocalPlayer player, net.minecraft.sounds.SoundEvent sound,
                                float volume, float pitch) {
         double dx = RANDOM.nextGaussian() * 4;
         double dy = RANDOM.nextGaussian() * 1.5;

@@ -5,6 +5,7 @@ import com.ivanitskiye.backroomsevolved.registry.ModRecipeSerializers;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CustomRecipe;
@@ -15,8 +16,8 @@ import net.minecraft.world.level.Level;
  * Бесформенный рецепт: камера + батарея = камера с зарядом +40.
  */
 public class CameraChargeRecipe extends CustomRecipe {
-    public CameraChargeRecipe(ResourceLocation id) {
-        super(id);
+    public CameraChargeRecipe(ResourceLocation id, CraftingBookCategory category) {
+        super(id, category);
     }
 
     @Override

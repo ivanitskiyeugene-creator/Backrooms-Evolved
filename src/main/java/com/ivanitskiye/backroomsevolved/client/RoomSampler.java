@@ -30,7 +30,7 @@ public class RoomSampler {
         while (!queue.isEmpty() && seen.size() < MAX_VOLUME) {
             BlockPos pos = queue.poll();
             BlockState state = level.getBlockState(pos);
-            if (!state.isAir() && state.getMaterial().isSolid()) continue;
+            if (!state.isAir() && !state.canBeReplaced()) continue;
             air++;
             for (var dir : new BlockPos[]{pos.above(), pos.below(), pos.north(), pos.south(), pos.east(), pos.west()}) {
                 if (seen.add(dir.immutable())) queue.add(dir);

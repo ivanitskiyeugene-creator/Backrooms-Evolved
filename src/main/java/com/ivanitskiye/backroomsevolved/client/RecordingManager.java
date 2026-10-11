@@ -5,8 +5,8 @@ import com.ivanitskiye.backroomsevolved.network.ModNetwork;
 import com.ivanitskiye.backroomsevolved.network.RecordingDonePacket;
 import com.ivanitskiye.backroomsevolved.registry.ModSounds;
 import com.mojang.blaze3d.platform.NativeImage;
-import com.mojang.blaze3d.pipeline.Framebuffer;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.Framebuffer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
 
@@ -94,7 +94,7 @@ public class RecordingManager {
                 for (int i = 0; i < frames.size(); i++) {
                     NativeImage img = frames.get(i);
                     try {
-                        img.write(new File(dir, String.format("frame_%03d.png", i)));
+                        img.save(new File(dir, String.format("frame_%03d.png", i)));
                     } catch (IOException ignored) {
                     }
                     img.close();

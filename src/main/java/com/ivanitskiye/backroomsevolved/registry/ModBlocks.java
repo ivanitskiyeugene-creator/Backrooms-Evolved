@@ -8,9 +8,9 @@ import com.ivanitskiye.backroomsevolved.block.FlickerLampBlock;
 import com.ivanitskiye.backroomsevolved.block.FootprintCarpetBlock;
 import com.ivanitskiye.backroomsevolved.block.SanityAnchorBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -21,15 +21,11 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, BackroomsEvolved.MODID);
 
     private static BlockBehaviour.Properties carpet() {
-        return BlockBehaviour.Properties.of(Material.CLOTH_DECORATION)
-                .strength(0.3f, 0.5f)
-                .sound(SoundType.WOOL);
+        return BlockBehaviour.Properties.copy(Blocks.YELLOW_WOOL);
     }
 
     private static BlockBehaviour.Properties lampProps() {
-        return BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS)
-                .strength(0.4f)
-                .sound(SoundType.GLASS)
+        return BlockBehaviour.Properties.copy(Blocks.GLASS)
                 .lightLevel(s -> BackroomsLampBlock.lightOf(s) ? 15 : 0);
     }
 
@@ -43,12 +39,10 @@ public class ModBlocks {
             () -> new FootprintCarpetBlock(carpet()));
 
     public static final RegistryObject<Block> WALL_PANEL = BLOCKS.register("wall_panel",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(1.5f, 6f).sound(SoundType.STONE)));
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.SMOOTH_QUARTZ)));
 
     public static final RegistryObject<Block> OLD_WALLPAPER = BLOCKS.register("old_wallpaper",
-            () -> new Block(BlockBehaviour.Properties.of(Material.WOOD)
-                    .strength(0.8f, 1f).sound(SoundType.WOOD)));
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
     public static final RegistryObject<Block> FLUORESCENT_LAMP = BLOCKS.register("fluorescent_lamp",
             () -> new FlickerLampBlock(lampProps()));
@@ -60,9 +54,7 @@ public class ModBlocks {
             () -> new AlarmLampBlock(lampProps()));
 
     public static final RegistryObject<Block> SANITY_ANCHOR = BLOCKS.register("sanity_anchor",
-            () -> new SanityAnchorBlock(BlockBehaviour.Properties.of(Material.METAL)
-                    .strength(2f, 6f)
-                    .sound(SoundType.LANTERN)
+            () -> new SanityAnchorBlock(BlockBehaviour.Properties.copy(Blocks.LANTERN)
                     .lightLevel(s -> 14)));
 
     public static void register(IEventBus bus) {

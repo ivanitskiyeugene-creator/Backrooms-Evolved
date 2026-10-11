@@ -25,7 +25,7 @@ public class SanityAnchorBlock extends Block {
                     0, 0.02 + rand.nextDouble() * 0.02, 0);
         }
         if (rand.nextInt(20) == 0) {
-            level.addParticle(ParticleTypes.WARM_COMPOSTER,
+            level.addParticle(ParticleTypes.COMPOSTER,
                     pos.getX() + 0.5, pos.getY() + 0.7, pos.getZ() + 0.5,
                     0, 0.03, 0);
         }
